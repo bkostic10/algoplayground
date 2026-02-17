@@ -1,0 +1,9 @@
+.dotnet-home/
+.vs/
+.vscode/*.user
+*.suo
+*.user
+*.rsuser
+**/bin/
+**/obj/
+TestResults/

@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "dotnet: restore",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "restore",
+        "AlgoPlayground.sln"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "dotnet: build",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "src/AlgoPlayground.csproj"
+      ],
+      "group": "build",
+      "dependsOn": "dotnet: restore",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "dotnet: test",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "test",
+        "tests/AlgoPlayground.Tests.csproj"
+      ],
+      "dependsOn": "dotnet: build",
+      "group": "test",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "dotnet: run _Init",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--project",
+        "src/AlgoPlayground.csproj",
+        "-p:StartupObject=AlgoPlayground._Init.Program"
+      ],
+      "dependsOn": "dotnet: build",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "dotnet: run all scenarios",
+      "type": "shell",
+      "command": "for file in $(find src -name Program.cs | sort); do rel=${file#src/}; ns=${rel%/Program.cs}; startup=\"AlgoPlayground.${ns//\\//.}.Program\"; echo \"Running $startup\"; dotnet run --project src/AlgoPlayground.csproj -p:StartupObject=$startup; done",
+      "dependsOn": "dotnet: build",
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}
