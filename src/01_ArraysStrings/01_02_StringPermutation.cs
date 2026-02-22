@@ -7,45 +7,39 @@ public static class _01_02_StringPermutation
         ArgumentNullException.ThrowIfNull(input1);
         ArgumentNullException.ThrowIfNull(input2);
 
-        if(input1.Length != input2.Length)
+        if (input1.Length != input2.Length)
         {
             return false;
         }
-        
-        Dictionary<char, int> charCount1 = [];
-        Dictionary<char, int> charCount2 = [];
 
-        foreach (char c in input1)
+        if (input1.Length == 0)
         {
-            if (charCount1.TryGetValue(c, out int value))
-            {
-                charCount1[c] = ++value;
-            }
-            else
-            {
-                charCount1[c] = 1;
-            }
-        }
-        foreach (char c in input2)
-        {
-            if (charCount2.TryGetValue(c, out int value))
-            {
-                charCount2[c] = ++value;
-            }
-            else
-            {
-                charCount2[c] = 1;
-            }
+            return true;
         }
 
-        foreach (var kvp in charCount1)
+        Dictionary<char, int> charCounts = [];
+
+        foreach (var ch in input1)
         {
-            if (!charCount2.TryGetValue(kvp.Key, out int value) || value != kvp.Value)
+            charCounts[ch] = charCounts.TryGetValue(ch, out var count) ? count + 1 : 1;
+        }
+
+        foreach (var ch in input2)
+        {
+            if (!charCounts.TryGetValue(ch, out var count))
             {
                 return false;
             }
+
+            if (count == 1)
+            {
+                charCounts.Remove(ch);
+                continue;
+            }
+
+            charCounts[ch] = count - 1;
         }
 
-        return true;
+        return charCounts.Count == 0;
     }
 }
