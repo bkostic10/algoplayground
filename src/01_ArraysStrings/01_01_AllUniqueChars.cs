@@ -1,6 +1,6 @@
 ﻿namespace AlgoPlayground._01_ArraysStrings;
 
-public static class _01_01_AllUniuqueChars
+public static class _01_01_AllUniqueChars
 {
     // Main variant: works for any Unicode string.
     public static bool HasAllUniqueChars(string value)

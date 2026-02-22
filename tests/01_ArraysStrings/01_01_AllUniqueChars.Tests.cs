@@ -1,6 +1,6 @@
 namespace AlgoPlayground._01_ArraysStrings;
 
-public class _01_01_AllUniuqueCharsTests
+public class _01_01_AllUniqueCharsTests
 {
     [Theory]
     [InlineData("")]
@@ -8,7 +8,7 @@ public class _01_01_AllUniuqueCharsTests
     [InlineData("AaBbCc")]
     public void HasAllUniqueChars_ReturnsTrue_WhenAllCharsAreUnique(string input)
     {
-        var result = _01_01_AllUniuqueChars.HasAllUniqueChars(input);
+        var result = _01_01_AllUniqueChars.HasAllUniqueChars(input);
         Assert.True(result);
     }
 
@@ -18,14 +18,14 @@ public class _01_01_AllUniuqueCharsTests
     [InlineData("1123")]
     public void HasAllUniqueChars_ReturnsFalse_WhenAnyCharRepeats(string input)
     {
-        var result = _01_01_AllUniuqueChars.HasAllUniqueChars(input);
+        var result = _01_01_AllUniqueChars.HasAllUniqueChars(input);
         Assert.False(result);
     }
 
     [Fact]
     public void HasAllUniqueChars_Throws_WhenInputIsNull()
     {
-        Assert.Throws<ArgumentNullException>(() => _01_01_AllUniuqueChars.HasAllUniqueChars(null!));
+        Assert.Throws<ArgumentNullException>(() => _01_01_AllUniqueChars.HasAllUniqueChars(null!));
     }
 
     [Theory]
@@ -34,7 +34,7 @@ public class _01_01_AllUniuqueCharsTests
     [InlineData("0123456789")]
     public void HasAllUniqueAsciiChars_ReturnsTrue_ForUniqueAsciiInput(string input)
     {
-        var result = _01_01_AllUniuqueChars.HasAllUniqueAsciiChars(input);
+        var result = _01_01_AllUniqueChars.HasAllUniqueAsciiChars(input);
         Assert.True(result);
     }
 
@@ -43,14 +43,14 @@ public class _01_01_AllUniuqueCharsTests
     [InlineData("aA1a")]
     public void HasAllUniqueAsciiChars_ReturnsFalse_WhenAsciiInputHasDuplicates(string input)
     {
-        var result = _01_01_AllUniuqueChars.HasAllUniqueAsciiChars(input);
+        var result = _01_01_AllUniqueChars.HasAllUniqueAsciiChars(input);
         Assert.False(result);
     }
 
     [Fact]
     public void HasAllUniqueAsciiChars_ReturnsFalse_WhenInputContainsNonAsciiChars()
     {
-        var result = _01_01_AllUniuqueChars.HasAllUniqueAsciiChars("abCz\u00e9");
+        var result = _01_01_AllUniqueChars.HasAllUniqueAsciiChars("abCz\u00e9");
         Assert.False(result);
     }
 
@@ -59,7 +59,7 @@ public class _01_01_AllUniuqueCharsTests
     {
         var input = new string(Enumerable.Range(0, 129).Select(i => (char)i).ToArray());
 
-        var result = _01_01_AllUniuqueChars.HasAllUniqueAsciiChars(input);
+        var result = _01_01_AllUniqueChars.HasAllUniqueAsciiChars(input);
 
         Assert.False(result);
     }
@@ -67,6 +67,6 @@ public class _01_01_AllUniuqueCharsTests
     [Fact]
     public void HasAllUniqueAsciiChars_Throws_WhenInputIsNull()
     {
-        Assert.Throws<ArgumentNullException>(() => _01_01_AllUniuqueChars.HasAllUniqueAsciiChars(null!));
+        Assert.Throws<ArgumentNullException>(() => _01_01_AllUniqueChars.HasAllUniqueAsciiChars(null!));
     }
 }
